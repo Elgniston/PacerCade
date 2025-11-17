@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacercade - Cadence Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Pacercade</h1>
+    <p class="subtitle">Running / Jump Rope Cadence Trainer</p>
+
+    <label for="intervalSlider" class="label">
+      Choose your beat interval (seconds):
+    </label>
+
+    <input
+      id="intervalSlider"
+      type="range"
+      min="0.10"
+      max="1.00"
+      step="0.01"
+      value="0.50"
+    />
+
+    <p class="value">
+      Beat every <span id="intervalValue">0.50</span> seconds
+    </p>
+
+    <div class="buttons">
+      <button id="startBtn" class="btn start">Start</button>
+      <button id="stopBtn" class="btn stop">Stop</button>
+    </div>
+
+    <p class="note">
+      Tip: Set a lower interval for faster steps. Start around 0.50 seconds and adjust.
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
