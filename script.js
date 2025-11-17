@@ -22,13 +22,15 @@ function playBeep() {
   beep.play();
 }
 
-function scheduleBeats() {
+function scheduleBeats({ playImmediately } = { playImmediately: true }) {
   stopBeats();
 
   const intervalSeconds = Number(slider.value);
   const intervalMs = intervalSeconds * 1000;
 
-  playBeep();
+  if (playImmediately) {
+    playBeep();
+  }
   timerId = setInterval(playBeep, intervalMs);
 }
 
@@ -42,7 +44,8 @@ function stopBeats() {
 slider.addEventListener("input", () => {
   updateLabel();
   if (timerId) {
-    scheduleBeats(); // immediately re-sync if the timer is running
+    // Update interval without triggering another immediate beep mid-drag
+    scheduleBeats({ playImmediately: false });
   }
 });
 
