@@ -75,9 +75,19 @@ h1 {
   color: #052e16;
 }
 
+.btn.start:active {
+  background-color: #15803d;
+  color: #f0fdf4;
+}
+
 .btn.stop {
   background-color: #ef4444;
   color: #450a0a;
+}
+
+.btn.stop:active {
+  background-color: #b91c1c;
+  color: #fee2e2;
 }
 
 .btn:active {
