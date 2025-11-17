@@ -4,46 +4,80 @@ const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 
 let timerId = null;
-const beep = new Audio("beep.mp3");
+let audioCtx = null;
 
-// update text when slider moves
 function updateLabel() {
-  const seconds = parseFloat(slider.value).toFixed(2);
+  const seconds = Number(slider.value).toFixed(2);
   valueSpan.textContent = seconds;
 }
 
-slider.addEventListener("input", () => {
-  updateLabel();
-  // if you want, you could also change the running timer on the fly later
-});
-
-function playBeep() {
-  beep.currentTime = 0; // rewind to start
-  beep.play();
+function ensureAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
 }
 
-function startBeats() {
-  stopBeats(); // clear any old timer
+function playBeep() {
+  ensureAudioContext();
 
-  const intervalSeconds = parseFloat(slider.value);
+  const now = audioCtx.currentTime;
+  const duration = 0.08; // seconds
+
+  const oscillator = audioCtx.createOscillator();
+  oscillator.type = "square";
+  oscillator.frequency.setValueAtTime(880, now);
+
+  const envelope = audioCtx.createGain();
+  envelope.gain.setValueAtTime(0.3, now);
+  envelope.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+  oscillator.connect(envelope).connect(audioCtx.destination);
+  oscillator.start(now);
+  oscillator.stop(now + duration);
+}
+
+function scheduleBeats() {
+  stopBeats();
+
+  const intervalSeconds = Number(slider.value);
   const intervalMs = intervalSeconds * 1000;
 
-  // play immediately
   playBeep();
-
-  // then set up repeating timer
   timerId = setInterval(playBeep, intervalMs);
 }
 
 function stopBeats() {
-  if (timerId !== null) {
+  if (timerId) {
     clearInterval(timerId);
     timerId = null;
   }
 }
 
-startBtn.addEventListener("click", startBeats);
+slider.addEventListener("input", () => {
+  updateLabel();
+  if (timerId) {
+    scheduleBeats(); // immediately re-sync if the timer is running
+  }
+});
+
+startBtn.addEventListener("click", scheduleBeats);
 stopBtn.addEventListener("click", stopBeats);
 
-// initialize label text
+function wirePressVisuals(button) {
+  const setPressed = (isPressed) => {
+    button.classList.toggle("pressed", isPressed);
+  };
+
+  button.addEventListener("pointerdown", () => setPressed(true));
+  button.addEventListener("pointerup", () => setPressed(false));
+  button.addEventListener("pointerleave", () => setPressed(false));
+  button.addEventListener("pointercancel", () => setPressed(false));
+}
+
+wirePressVisuals(startBtn);
+wirePressVisuals(stopBtn);
+
 updateLabel();

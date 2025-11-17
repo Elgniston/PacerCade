@@ -75,7 +75,8 @@ h1 {
   color: #052e16;
 }
 
-.btn.start:active {
+.btn.start:active,
+.btn.start.pressed {
   background-color: #15803d;
   color: #f0fdf4;
 }
@@ -85,7 +86,8 @@ h1 {
   color: #450a0a;
 }
 
-.btn.stop:active {
+.btn.stop:active,
+.btn.stop.pressed {
   background-color: #b91c1c;
   color: #fee2e2;
 }
