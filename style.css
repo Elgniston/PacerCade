@@ -101,3 +101,17 @@ h1 {
   text-align: center;
   color: #9ca3af;
 }
+
+.tone-controls {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #111b34;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tone-controls h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}

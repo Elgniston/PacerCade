@@ -2,6 +2,12 @@ const slider = document.getElementById("intervalSlider");
 const valueSpan = document.getElementById("intervalValue");
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
+const frequencySlider = document.getElementById("frequencySlider");
+const durationSlider = document.getElementById("durationSlider");
+const volumeSlider = document.getElementById("volumeSlider");
+const frequencyValue = document.getElementById("frequencyValue");
+const durationValue = document.getElementById("durationValue");
+const volumeValue = document.getElementById("volumeValue");
 
 let timerId = null;
 let audioCtx = null;
@@ -24,14 +30,16 @@ function playBeep() {
   ensureAudioContext();
 
   const now = audioCtx.currentTime;
-  const duration = 0.16;
+  const duration = Number(durationSlider.value) / 1000;
+  const frequency = Number(frequencySlider.value);
+  const volume = Number(volumeSlider.value);
 
   const oscillator = audioCtx.createOscillator();
   oscillator.type = "sine";
-  oscillator.frequency.setValueAtTime(160, now);
+  oscillator.frequency.setValueAtTime(frequency, now);
 
   const envelope = audioCtx.createGain();
-  envelope.gain.setValueAtTime(0.6, now);
+  envelope.gain.setValueAtTime(volume, now);
   envelope.gain.linearRampToValueAtTime(0.001, now + duration);
 
   oscillator.connect(envelope).connect(audioCtx.destination);
@@ -65,6 +73,18 @@ slider.addEventListener("input", () => {
   }
 });
 
+function updateToneDisplays() {
+  frequencyValue.textContent = frequencySlider.value;
+  durationValue.textContent = durationSlider.value;
+  volumeValue.textContent = Number(volumeSlider.value).toFixed(2);
+}
+
+[frequencySlider, durationSlider, volumeSlider].forEach((control) => {
+  control.addEventListener("input", () => {
+    updateToneDisplays();
+  });
+});
+
 startBtn.addEventListener("click", scheduleBeats);
 stopBtn.addEventListener("click", stopBeats);
 
@@ -83,3 +103,4 @@ wirePressVisuals(startBtn);
 wirePressVisuals(stopBtn);
 
 updateLabel();
+updateToneDisplays();
