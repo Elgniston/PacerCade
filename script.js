@@ -4,22 +4,39 @@ const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 
 let timerId = null;
-const beep = new Audio("beep.mp3");
-beep.preload = "auto";
+let audioCtx = null;
 
 function updateLabel() {
   const seconds = Number(slider.value).toFixed(2);
   valueSpan.textContent = seconds;
 }
 
-function playBeep() {
-  // Rewind and play the audio clip so each beat uses the full sample
-  try {
-    beep.currentTime = 0;
-  } catch (err) {
-    // Some mobile browsers block setting currentTime before metadata loads
+function ensureAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
-  beep.play();
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+}
+
+function playBeep() {
+  ensureAudioContext();
+
+  const now = audioCtx.currentTime;
+  const duration = 0.08;
+
+  const oscillator = audioCtx.createOscillator();
+  oscillator.type = "square";
+  oscillator.frequency.setValueAtTime(880, now);
+
+  const envelope = audioCtx.createGain();
+  envelope.gain.setValueAtTime(0.3, now);
+  envelope.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+  oscillator.connect(envelope).connect(audioCtx.destination);
+  oscillator.start(now);
+  oscillator.stop(now + duration);
 }
 
 function scheduleBeats({ playImmediately } = { playImmediately: true }) {
@@ -44,7 +61,6 @@ function stopBeats() {
 slider.addEventListener("input", () => {
   updateLabel();
   if (timerId) {
-    // Update interval without triggering another immediate beep mid-drag
     scheduleBeats({ playImmediately: false });
   }
 });
