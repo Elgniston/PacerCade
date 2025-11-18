@@ -24,15 +24,15 @@ function playBeep() {
   ensureAudioContext();
 
   const now = audioCtx.currentTime;
-  const duration = 0.08;
+  const duration = 0.16;
 
   const oscillator = audioCtx.createOscillator();
-  oscillator.type = "square";
-  oscillator.frequency.setValueAtTime(880, now);
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(160, now);
 
   const envelope = audioCtx.createGain();
-  envelope.gain.setValueAtTime(0.3, now);
-  envelope.gain.exponentialRampToValueAtTime(0.001, now + duration);
+  envelope.gain.setValueAtTime(0.6, now);
+  envelope.gain.linearRampToValueAtTime(0.001, now + duration);
 
   oscillator.connect(envelope).connect(audioCtx.destination);
   oscillator.start(now);
