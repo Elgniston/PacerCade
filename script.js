@@ -109,7 +109,7 @@ wirePressVisuals(startBtn);
 wirePressVisuals(stopBtn);
 
 playlistBtn.addEventListener("click", () => {
-  const loginUrl = "https://pacer-cade-playlist-service.vercel.app/api/login";
+  const loginUrl = "https://pacercade-playlist-service.vercel.app/api/login";
   window.open(loginUrl, "_blank", "noopener,noreferrer");
 });
 
