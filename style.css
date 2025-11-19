@@ -143,6 +143,26 @@ h1 {
   margin-bottom: 16px;
 }
 
+.playlist-status {
+  min-height: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.playlist-status.loading {
+  color: #facc15;
+}
+
+.playlist-status.success {
+  color: #4ade80;
+}
+
+.playlist-status.error {
+  color: #f87171;
+}
+
 .tone-controls {
   margin-top: 24px;
   padding: 16px;
