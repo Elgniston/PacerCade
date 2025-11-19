@@ -1,5 +1,6 @@
 const intervalSlider = document.getElementById("intervalSlider");
 const intervalValue = document.getElementById("intervalValue");
+const bpmValue = document.getElementById("bpmValue");
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const frequencySlider = document.getElementById("frequencySlider");
@@ -34,6 +35,8 @@ function wirePressVisuals(button) {
 
 function updateIntervalLabel() {
   intervalValue.textContent = Number(intervalSlider.value).toFixed(2);
+  const bpm = Math.round(60 / Number(intervalSlider.value));
+  bpmValue.textContent = bpm;
 }
 
 function updateToneDisplays() {
