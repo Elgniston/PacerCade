@@ -85,12 +85,15 @@ function stopBeats() {
   }
 }
 
-intervalSlider.addEventListener("input", () => {
+function handleIntervalInput() {
   updateIntervalLabel();
   if (timerId) {
     scheduleBeats({ playImmediately: false });
   }
-});
+}
+
+intervalSlider.addEventListener("input", handleIntervalInput);
+intervalSlider.addEventListener("change", handleIntervalInput);
 
 [frequencySlider, durationSlider, volumeSlider].forEach((control) => {
   control.addEventListener("input", () => {
