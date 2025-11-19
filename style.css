@@ -135,3 +135,24 @@ h1 {
   margin-bottom: 12px;
   text-align: center;
 }
+
+.comments {
+  margin-top: 32px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b1120;
+}
+
+.comments h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.comments p {
+  text-align: center;
+  color: #9ca3af;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
