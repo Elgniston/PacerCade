@@ -12,208 +12,76 @@
     <h1>Pacercade</h1>
     <p class="subtitle">Running / Jump Rope Cadence Trainer</p>
 
-    <div class="cards">
-      <section class="card">
-        <h2 class="card-title">Beat 1</h2>
+    <section class="card single-card">
+      <h2 class="card-title">Beat Controller</h2>
 
-        <p class="label">Choose your beat interval (seconds):</p>
+      <p class="label">Choose your beat interval (seconds):</p>
+      <input
+        id="intervalSlider"
+        class="interval-slider"
+        type="range"
+        min="0.10"
+        max="1.00"
+        step="0.01"
+        value="0.50"
+      />
+
+      <p class="value">
+        Beat every <span id="intervalValue">0.50</span> seconds
+      </p>
+
+      <div class="buttons">
+        <button id="startBtn" class="btn start start-btn">Start</button>
+        <button id="stopBtn" class="btn stop stop-btn">Stop</button>
+      </div>
+
+      <p class="note">
+        Tip: Set a lower interval for faster steps. Start around 0.50 seconds and adjust.
+      </p>
+
+      <div class="tone-controls">
+        <h3>Customize Tone</h3>
+
+        <label class="label">
+          Frequency (Hz): <span id="frequencyValue">160</span>
+        </label>
         <input
-          class="interval-slider"
+          id="frequencySlider"
+          class="frequency-slider"
           type="range"
-          min="0.10"
-          max="1.00"
-          step="0.01"
-          value="0.50"
+          min="80"
+          max="600"
+          step="5"
+          value="160"
         />
 
-        <p class="value">
-          Beat every <span class="interval-value">0.50</span> seconds
-        </p>
-
-        <div class="buttons">
-          <button class="btn start start-btn">Start</button>
-          <button class="btn stop stop-btn">Stop</button>
-        </div>
-
-        <p class="note">
-          Tip: Set a lower interval for faster steps. Start around 0.50 seconds and adjust.
-        </p>
-
-        <div class="tone-controls">
-          <h3>Customize Tone</h3>
-
-          <label class="label">
-            Frequency (Hz): <span class="frequency-value">160</span>
-          </label>
-          <input
-            class="frequency-slider"
-            type="range"
-            min="80"
-            max="600"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Duration (ms): <span class="duration-value">160</span>
-          </label>
-          <input
-            class="duration-slider"
-            type="range"
-            min="40"
-            max="300"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Volume: <span class="volume-value">0.60</span>
-          </label>
-          <input
-            class="volume-slider"
-            type="range"
-            min="0.1"
-            max="1.0"
-            step="0.01"
-            value="0.6"
-          />
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 class="card-title">Beat 2</h2>
-
-        <p class="label">Choose your beat interval (seconds):</p>
+        <label class="label">
+          Duration (ms): <span id="durationValue">160</span>
+        </label>
         <input
-          class="interval-slider"
+          id="durationSlider"
+          class="duration-slider"
           type="range"
-          min="0.10"
-          max="1.00"
-          step="0.01"
-          value="0.50"
+          min="40"
+          max="300"
+          step="5"
+          value="160"
         />
 
-        <p class="value">
-          Beat every <span class="interval-value">0.50</span> seconds
-        </p>
-
-        <div class="buttons">
-          <button class="btn start start-btn">Start</button>
-          <button class="btn stop stop-btn">Stop</button>
-        </div>
-
-        <p class="note">
-          Tip: Set a lower interval for faster steps. Start around 0.50 seconds and adjust.
-        </p>
-
-        <div class="tone-controls">
-          <h3>Customize Tone</h3>
-
-          <label class="label">
-            Frequency (Hz): <span class="frequency-value">160</span>
-          </label>
-          <input
-            class="frequency-slider"
-            type="range"
-            min="80"
-            max="600"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Duration (ms): <span class="duration-value">160</span>
-          </label>
-          <input
-            class="duration-slider"
-            type="range"
-            min="40"
-            max="300"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Volume: <span class="volume-value">0.60</span>
-          </label>
-          <input
-            class="volume-slider"
-            type="range"
-            min="0.1"
-            max="1.0"
-            step="0.01"
-            value="0.6"
-          />
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 class="card-title">Beat 3</h2>
-
-        <p class="label">Choose your beat interval (seconds):</p>
+        <label class="label">
+          Volume: <span id="volumeValue">0.60</span>
+        </label>
         <input
-          class="interval-slider"
+          id="volumeSlider"
+          class="volume-slider"
           type="range"
-          min="0.10"
-          max="1.00"
+          min="0.1"
+          max="1.0"
           step="0.01"
-          value="0.50"
+          value="0.6"
         />
-
-        <p class="value">
-          Beat every <span class="interval-value">0.50</span> seconds
-        </p>
-
-        <div class="buttons">
-          <button class="btn start start-btn">Start</button>
-          <button class="btn stop stop-btn">Stop</button>
-        </div>
-
-        <p class="note">
-          Tip: Set a lower interval for faster steps. Start around 0.50 seconds and adjust.
-        </p>
-
-        <div class="tone-controls">
-          <h3>Customize Tone</h3>
-
-          <label class="label">
-            Frequency (Hz): <span class="frequency-value">160</span>
-          </label>
-          <input
-            class="frequency-slider"
-            type="range"
-            min="80"
-            max="600"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Duration (ms): <span class="duration-value">160</span>
-          </label>
-          <input
-            class="duration-slider"
-            type="range"
-            min="40"
-            max="300"
-            step="5"
-            value="160"
-          />
-
-          <label class="label">
-            Volume: <span class="volume-value">0.60</span>
-          </label>
-          <input
-            class="volume-slider"
-            type="range"
-            min="0.1"
-            max="1.0"
-            step="0.01"
-            value="0.6"
-          />
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
     <section class="comments">
       <h2>Comments & Suggestions</h2>
       <p>Sign in with GitHub to leave feedback for the Pacercade community.</p>
