@@ -99,6 +99,17 @@ h1 {
   color: #052e16;
 }
 
+.btn.playlist {
+  background-color: #6366f1;
+  color: #e0e7ff;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.btn.playlist:active {
+  background-color: #4338ca;
+}
+
 .btn.start:active,
 .btn.start.pressed {
   background-color: #15803d;
@@ -124,6 +135,12 @@ h1 {
   font-size: 12px;
   text-align: center;
   color: #9ca3af;
+}
+
+.note.small {
+  font-size: 11px;
+  margin-top: -6px;
+  margin-bottom: 16px;
 }
 
 .tone-controls {

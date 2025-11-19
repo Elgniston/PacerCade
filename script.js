@@ -3,6 +3,7 @@ const intervalValue = document.getElementById("intervalValue");
 const bpmValue = document.getElementById("bpmValue");
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
+const playlistBtn = document.getElementById("playlistBtn");
 const frequencySlider = document.getElementById("frequencySlider");
 const durationSlider = document.getElementById("durationSlider");
 const volumeSlider = document.getElementById("volumeSlider");
@@ -106,6 +107,11 @@ stopBtn.addEventListener("click", () => stopBeats());
 
 wirePressVisuals(startBtn);
 wirePressVisuals(stopBtn);
+
+playlistBtn.addEventListener("click", () => {
+  const loginUrl = "https://pacer-cade-playlist-service.vercel.app/api/login";
+  window.open(loginUrl, "_blank", "noopener,noreferrer");
+});
 
 updateIntervalLabel();
 updateToneDisplays();
